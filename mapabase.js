@@ -107,18 +107,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     agregarLimiteAlcaldia();
 
-    // 🖼️ Simbología en esquina inferior derecha
-    const simboloControl = L.control({ position: 'bottomright' });
-    simboloControl.onAdd = function () {
-        const div = L.DomUtil.create('div', 'leaflet-control-symbol');
-        div.innerHTML = '<img src="img/simbol/Simbologi.png" alt="Simbología" style="width: 150px;">';
-        div.style.backgroundColor = 'white';
-        div.style.padding = '5px';
-        div.style.borderRadius = '4px';
-        div.style.border = '1px solid #ccc';
-        return div;
-    };
-    simboloControl.addTo(map);
+   
 
     console.log("🗺️ Mapa base cargado correctamente.");
+
 });
