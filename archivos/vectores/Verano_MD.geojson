@@ -1,0 +1,13 @@
+{
+"type": "FeatureCollection",
+"name": "Verano_MD",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Name": "DEPORTIVO ÁGUILAS JAPÓN", "link": "http://www.google.com/maps?q=19.354851,-99.213778" }, "geometry": { "type": "Point", "coordinates": [ -99.213778, 19.354851 ] } },
+{ "type": "Feature", "properties": { "Name": "DEPORTIVO JALALPA 2000", "link": "http://www.google.com/maps?q=19.370392,-99.241826" }, "geometry": { "type": "Point", "coordinates": [ -99.241826, 19.370392 ] } },
+{ "type": "Feature", "properties": { "Name": "DEPORTIVO PLATEROS", "link": "http://www.google.com/maps?q=19.368062,-99.192625" }, "geometry": { "type": "Point", "coordinates": [ -99.192625, 19.368062 ] } },
+{ "type": "Feature", "properties": { "Name": "DEPORTIVO G 3", "link": "http://www.google.com/maps?q=19.387722,-99.19962" }, "geometry": { "type": "Point", "coordinates": [ -99.19962, 19.387722 ] } },
+{ "type": "Feature", "properties": { "Name": "DEPORTIVO BATALLÓN DE SAN PATRICIO", "link": "http://www.google.com/maps?q=19.390145,-99.199958" }, "geometry": { "type": "Point", "coordinates": [ -99.199958, 19.390145 ] } },
+{ "type": "Feature", "properties": { "Name": "CENTRO DEPORTIVO VALENTÍN GÓMEZ FARÍAS", "link": "http://www.google.com/maps?q=19.368173,-99.207117" }, "geometry": { "type": "Point", "coordinates": [ -99.207117, 19.368173 ] } }
+]
+}
