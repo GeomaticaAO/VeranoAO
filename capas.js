@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  // 👉 Insertar estilos para zoom en imagen desde JS
+  // 👉 Estilos agregados desde JS (imagen con zoom + etiqueta compacta)
   const estiloZoom = document.createElement("style");
   estiloZoom.textContent = `
     #contenidoModalPantalla img {
@@ -15,10 +15,19 @@ document.addEventListener("DOMContentLoaded", function () {
       transform: scale(2.2);
       cursor: zoom-out;
     }
+    .etiqueta-nombre-punto {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      white-space: nowrap;
+      pointer-events: none;
+    }
   `;
   document.head.appendChild(estiloZoom);
 
-  // 👉 Función para mostrar el modal pantalla completa
+  // 👉 Mostrar modal pantalla completa
   function mostrarModalPantalla(html) {
     const modal = document.getElementById("modalPantalla");
     const contenido = document.getElementById("contenidoModalPantalla");
@@ -27,13 +36,13 @@ document.addEventListener("DOMContentLoaded", function () {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  // 👉 Función para cerrar el modal
+  // 👉 Cerrar modal
   document.getElementById("cerrarModalPantalla").addEventListener("click", () => {
     document.getElementById("modalPantalla").style.display = "none";
     document.getElementById("contenidoModalPantalla").innerHTML = "";
   });
 
-  // 👉 Zoom en imagen del modal con clic
+  // 👉 Zoom en imagen del modal
   document.addEventListener("click", function (e) {
     if (
       e.target.tagName === "IMG" &&
@@ -57,9 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  // 👉 Ocultar visualmente sin eliminar funcionalidad
   controlCapasContainer.style.display = "none";
-
   const listaCapas = document.createElement("ul");
   listaCapas.className = "lista-capas";
   controlCapasContainer.appendChild(listaCapas);
@@ -77,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const capaGeojson = L.geoJSON(data, {
         pane: "capasPuntosPane",
+
         onEachFeature: function (feature, layer) {
           const nombre = feature.properties.Name || "Sin nombre";
           const enlace = feature.properties.link || "#";
@@ -97,11 +105,30 @@ document.addEventListener("DOMContentLoaded", function () {
             mostrarModalPantalla(htmlModal);
           });
         },
+
         pointToLayer: function (feature, latlng) {
-          return L.marker(latlng, {
+          const nombre = feature.properties.Name || "Sin nombre";
+
+          const marcador = L.marker(latlng, {
             icon: iconoPersonalizado,
             pane: "capasPuntosPane"
           });
+
+          // 👉 Offset dinámico para reducir traslape
+          const offsetY = Math.floor((latlng.lat * 1000) % 14) - 7;
+
+          const tooltip = L.tooltip({
+            permanent: true,
+            direction: "down",
+            offset: [0, -10],
+            className: "etiqueta-nombre-punto"
+          })
+          .setContent(nombre)
+          .setLatLng(latlng);
+
+          marcador.bindTooltip(tooltip).openTooltip();
+
+          return marcador;
         }
       }).addTo(map);
 
